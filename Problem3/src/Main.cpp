@@ -1,9 +1,8 @@
 #include "File.h"
 #include "Vector.h"
-#include <iostream>
 
 int main()
 {
-	File new_file;
-	new_file.ReadFile("res/test1.txt");
+	File new_file("res/test_29.txt");
+	new_file.GetText();
 }

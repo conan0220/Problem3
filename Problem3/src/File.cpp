@@ -1,31 +1,46 @@
-#include "File.h"
-
+#include <iostream>
 #include <string>
 
-File::File()
-{
-}
+#include "File.h"
+#include "Vector.h"
 
 File::File(const std::string file_name)
+	: file_name(file_name)
 {
-	ReadFile(file_name);
+	ReadFile();
 }
 
 File::~File()
 {
-	file.close();
+	
 }
 
-void File::ReadFile(std::string file_name) 
+void File::ReadFile() 
 {
+	std::ifstream file;
 	file.open(file_name);
+
+	std::string line_text = "";
 	if (file.is_open()) 
 	{
-		return;
+		while (std::getline(file, line_text))
+		{
+			text += line_text;
+		}
 	}
 	else 
 	{
 		std::cerr << "Failed to open file." << std::endl;
 		exit(1);
+	}
+
+	file.close();
+}
+
+void File::GetText()
+{
+	for (auto temp : text)
+	{
+		std::cout << temp << std::endl;
 	}
 }

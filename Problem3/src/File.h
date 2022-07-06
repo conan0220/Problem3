@@ -1,20 +1,19 @@
 #pragma once
-
-#include <iostream>
 #include <fstream>
+
+#include "Vector.h"
 
 class File
 {
 public:
-
-	File();
 	File(const std::string file_name);
 	~File();
 
-	void ReadFile(std::string file_name);	// read .txt file
+	void ReadFile();	// read .txt file and write to text
+	void GetText();
 
 private:
 
-
-	std::ifstream file;
+	std::string file_name;
+	Vector<std::string> text;
 };

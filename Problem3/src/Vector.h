@@ -10,6 +10,8 @@ public:
 	Vector(int sz = default_size);
 	~Vector();
 
+	const T* begin() const;
+	const T* end() const;
 	void push_back(const T& element);
 	const int& get_size() const;
 	const int& get_capacity() const;
@@ -40,15 +42,31 @@ template <typename T>
 Vector<T>::~Vector()
 {
 	delete[] self;
+	//std::cout << "delete" << std::endl;
+}
+
+template <typename T>
+const T* Vector<T>::begin() const
+{
+	return self;
+}
+
+template <typename T>
+const T* Vector<T>::end() const
+{
+	return self + size;
 }
 
 template <typename T>
 void Vector<T>::push_back(const T& element)
 {
-	size += 1;
-	if (size > capacity)
+	if (size + 1 > capacity)
 	{
-		expand(size);
+		expand(size + 1);
+	}
+	else
+	{
+		size += 1;
 	}
 	self[size - 1] = element;
 }
@@ -86,17 +104,18 @@ void Vector<T>::expand(const int& sz)
 	}
 	else
 	{
-		T* temp = nullptr;
-		temp = new T[size];
+		T* temp;
+		temp = new T[size]();
 		for (int i = 0; i < size; i++)
 		{
 			temp[i] = self[i];
 		}
 		AllocateMemory(CalculateCapacity(sz));
-		for (int i = 0; i < sz; i++)
+		for (int i = 0; i < size; i++)
 		{
 			self[i] = temp[i];
 		}
+		delete[] temp;
 		size = sz;
 	}
 }
@@ -131,7 +150,7 @@ void Vector<T>::AllocateMemory(const int& cap)
 		delete[] self;
 	}
 	capacity = cap;
-	self =  new T[cap]{NULL};
+	self = new T[cap]();
 }
 
 template <typename T>
