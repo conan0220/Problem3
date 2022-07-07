@@ -1,8 +1,11 @@
-#include "File.h"
+#include "Text.h"
 #include "Vector.h"
 
 int main()
 {
-	File new_file("res/test_29.txt");
-	new_file.GetText();
+	Text new_text("res/test_29.txt");
+	for (auto temp : new_text.get_int())
+	{
+		std::cout << temp << std::endl;
+	}
 }

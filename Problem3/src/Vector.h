@@ -95,8 +95,8 @@ void Vector<T>::expand(const int& sz)
 {
 	if (sz < size)
 	{
-		std::cerr << "Failed to expand, don't less than size" << std::endl;
-		exit(1);
+		std::cerr << "[Error]: Failed to expand, don't less than size" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 	else if (capacity >= sz)
 	{
@@ -125,8 +125,8 @@ T& Vector<T>::operator [] (const int& n) const
 {
 	if (n >= size)
 	{
-		std::cerr << "Index out of range" << std::endl;
-		exit(1);
+		std::cerr << "[Error]: Index out of range" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 	return self[n];
 }
@@ -142,8 +142,8 @@ void Vector<T>::AllocateMemory(const int& cap)
 {
 	if (cap < 0)
 	{
-		std::cerr << "Failed to allocate memory" << std::endl;
-		exit(1);
+		std::cerr << "[Error]: Failed to allocate memory" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 	else if (self != nullptr)
 	{
@@ -158,8 +158,8 @@ int Vector<T>::CalculateCapacity(const int& sz) const
 {
 	if (sz < 0)
 	{
-		std::cerr << "Invalid Size" << std::endl;
-		exit(1);
+		std::cerr << "[Error]: Invalid Size" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 	int cap = 1;
 	while (cap < sz)
