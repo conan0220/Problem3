@@ -10,6 +10,7 @@ public:
 	Vector(int sz = default_size);
 	~Vector();
 
+	// useful function
 	const T* begin() const;
 	const T* end() const;
 	void push_back(const T& element);
@@ -17,6 +18,8 @@ public:
 	const int& get_capacity() const;
 	void resize(const int& sz);
 	void expand(const int& sz);
+
+	// operator
 	T& operator [] (const int& n) const;
 	void operator += (const T& element);
 

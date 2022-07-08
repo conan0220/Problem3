@@ -3,8 +3,8 @@
 
 int main()
 {
-	Text new_text("res/test_29.txt");
-	for (auto temp : new_text.get_int())
+	Text new_text("res/test1.txt");
+	for (auto temp : new_text.get_text())
 	{
 		std::cout << temp << std::endl;
 	}
