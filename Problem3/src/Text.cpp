@@ -2,29 +2,19 @@
 #include <string>
 
 #include "Text.h"
-#include "Vector.h"
+#include "DataStructure/Vector.h"
 
-Text::Text()
-	: is_text_modify(true)
-{
-}
+Text::Text() {}
 
 Text::Text(const std::string file_path)
-	: file_path(file_path), is_text_modify(true)
+	: file_path(file_path)
 {
 	ReadFile();
 }
 
-Text::~Text()
-{
-}
+Text::~Text() {}
 
-const Vector<std::string>& Text::get_text()
-{
-	return text;
-}
-
-const Vector<int>& Text::get_int()
+const Vector<int>& Text::GetIntInText()
 {
 	if (is_text_modify)
 	{
@@ -34,37 +24,30 @@ const Vector<int>& Text::get_int()
 	return int_in_text;
 }
 
-void Text::push_back(const std::string& text)
+void Text::ReadFile()
 {
-	this->text += text;
-	is_text_modify = true;
-}
-
-void Text::operator += (const std::string& text)
-{
-	push_back(text);
-}
-
-void Text::ReadFile() 
-{
-	std::ifstream file;
-	file.open(file_path);
-
+	std::ifstream file(file_path);
 	std::string line_text = "";
-	if (file.is_open()) 
+	text.Resize(0);
+	if (file.is_open())
 	{
 		while (std::getline(file, line_text))
 		{
 			text += line_text;
 		}
 	}
-	else 
+	else
 	{
 		std::cerr << "[Error]: Failed to open file." << std::endl;
 		exit(EXIT_FAILURE);
 	}
-
 	file.close();
+}
+
+void Text::PushBack(const std::string& text)
+{
+	this->text += text;
+	is_text_modify = true;
 }
 
 void Text::UpdateIntInText()
@@ -96,13 +79,13 @@ void Text::UpdateIntInText()
 					}
 				}
 			}
-			else if (IsCharNumber(ch))
+			else if (IsCharInt(ch))
 			{
 				temp += ch;
 			}
 			else
 			{
-				if (!temp.empty() && IsCharNumber(*(temp.end() - 1)))
+				if (!temp.empty() && IsCharInt(*(temp.end() - 1)))
 				{
 					int_in_text += StringToInt(temp);
 					temp.clear();
@@ -128,12 +111,11 @@ void Text::UpdateIntInText()
 	}
 }
 
-
 const int& Text::StringToInt(const std::string& str) const 
 {
 	for (char temp : str)
 	{
-		if (!IsCharNumber(temp) && *str.begin() != '-')
+		if (!IsCharInt(temp) && *str.begin() != '-')
 		{
 			std::cerr << "[Error]: String is not number" << std::endl;
 			exit(EXIT_FAILURE);
@@ -155,26 +137,17 @@ const int& Text::StringToInt(const std::string& str) const
 			ans += CharToInt(str[i]) * pow(10, (str.length() - i - 1));
 		}
 	}
-
 	return ans;
 }
 
-
-const bool& Text::IsCharNumber(const char& ch) const 
+const bool& Text::IsCharInt(const char& ch) const 
 {
-	if (48 <= static_cast<int>(ch) and static_cast<int>(ch) <= 57) 
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return 48 <= static_cast<int>(ch) && static_cast<int>(ch) <= 57 ? true : false;
 }
 
 const int& Text::CharToInt(const char& ch) const
 {
-	if (!IsCharNumber(ch))
+	if (!IsCharInt(ch))
 	{
 		std::cerr << "[Error]: Char is not number" << std::endl;
 		exit(EXIT_FAILURE);

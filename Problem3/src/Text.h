@@ -1,7 +1,8 @@
 #pragma once
+
 #include <fstream>
 
-#include "Vector.h"
+#include "DataStructure/Vector.h"
 
 class Text
 {
@@ -10,23 +11,24 @@ public:
 	Text(const std::string file_path);
 	~Text();
 
+	const Vector<std::string>& GetText() { return text; }
+	const Vector<int>& GetIntInText();	// int in text
+
+	void ReadFile();	// read .txt file and write in the text
+	void PushBack(const std::string& text);
+	void SetFilePath(std::string file_path) { this->file_path = file_path; }
 	
-	const Vector<std::string>& get_text();
-	const Vector<int>& get_int();	// number in text
-
-	void push_back(const std::string& text);
-
-	void operator += (const std::string& text);
+	void operator += (const std::string& text) { PushBack(text); }
 
 private:
-	void ReadFile();	// read .txt file and write in the text
+
 	void UpdateIntInText();
 	const int& StringToInt(const std::string& str) const;
-	const bool& IsCharNumber(const char& ch) const;	// is char number or '-'
+	const bool& IsCharInt(const char& ch) const;	// is char int?
 	const int& CharToInt(const char& ch) const;
 	
-	std::string file_path;
-	Vector<std::string> text;
-	Vector<int> int_in_text;
-	bool is_text_modify;
+	std::string file_path = "";
+	Vector<std::string> text = NULL;
+	Vector<int> int_in_text = NULL;
+	bool is_text_modify = true;
 };

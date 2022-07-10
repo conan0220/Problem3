@@ -21,12 +21,18 @@
     <ClCompile Include="src\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Problem3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vector.h">
+    <ClInclude Include="src\DataStructure\Vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Problem3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

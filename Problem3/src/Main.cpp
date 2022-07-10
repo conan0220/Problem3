@@ -1,11 +1,13 @@
-#include "Text.h"
-#include "Vector.h"
+#include "Problem3.h"
 
 int main()
 {
-	Text new_text("res/test1.txt");
-	for (auto temp : new_text.get_text())
-	{
-		std::cout << temp << std::endl;
-	}
+	std::string filepath = "";
+
+	std::cout << "Input File: ";
+	std::cin >> filepath;
+
+	Problem3 problem(filepath);
+
+	std::cin.get();
 }

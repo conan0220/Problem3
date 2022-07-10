@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Problem3.cpp" />
     <ClCompile Include="src\Text.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Problem3.h" />
     <ClInclude Include="src\Text.h" />
-    <ClInclude Include="src\Vector.h" />
+    <ClInclude Include="src\DataStructure\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
